@@ -13,12 +13,12 @@ export async function getStaticPaths() {
   // 例: 2000/01/01, 2001/01/01, 2001/02/02 -> [2000/01/01, 2001/01/01, 2001/02/02]
   const uniqueDay = [
     ...new Set(
-      allPosts.map((post) => post.slug.split("/").slice(0, 3).join("/"))
+      allPosts.map((post) => post.id.split("/").slice(0, 3).join("/"))
     ),
   ];
 
   return uniqueDay.map((day) => {
-    const filteredPosts = allPosts.filter((post) => post.slug.startsWith(day));
+    const filteredPosts = allPosts.filter((post) => post.id.startsWith(day));
 
     return {
       params: {
@@ -49,7 +49,7 @@ const posts = Astro.props.posts;
   {
     posts.map((post: any) => (
       <ArticleCard
-        href={`/${post.slug}/`}
+        href={`/${post.id}/`}
         title={post.data.title}
         tags={post.data.tags}
         date={post.data.pubDate}

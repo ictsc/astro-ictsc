@@ -37,7 +37,7 @@ const filteredPosts = posts
   {
     filteredPosts.map((post: any) => (
       <ArticleCard
-        href={`/${post.slug}/`}
+        href={`/${post.id}/`}
         title={post.data.title}
         tags={post.data.tags}
         date={post.data.pubDate}

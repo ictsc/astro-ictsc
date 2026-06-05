@@ -7,7 +7,7 @@ const { href, title, tags, date, sticky = false } = Astro.props;
 
 <div
   class={`card card-bordered bg-base-100 text-base-content ${
-    sticky && "md:col-span-1 col-span-2"
+    sticky ? "max-md:col-span-1 col-span-2" : ""
   }`}
 >
   <div class="card-body">

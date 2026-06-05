@@ -12,11 +12,11 @@ export async function getStaticPaths() {
   // slug が先頭 yyyy を抽出, 重複なし
   // 例: 2000/01/01, 2001/01/01, 2001/02/02 -> [2000, 2001]
   const uniqueYears = [
-    ...new Set(allPosts.map((post) => post.slug.split("/")[0])),
+    ...new Set(allPosts.map((post) => post.id.split("/")[0])),
   ];
 
   return uniqueYears.map((year) => {
-    const filteredPosts = allPosts.filter((post) => post.slug.startsWith(year));
+    const filteredPosts = allPosts.filter((post) => post.id.startsWith(year));
 
     return {
       params: { yyyy: year },
@@ -39,7 +39,7 @@ const posts = Astro.props.posts;
   {
     posts.map((post: any) => (
       <ArticleCard
-        href={`/${post.slug}/`}
+        href={`/${post.id}/`}
         title={post.data.title}
         tags={post.data.tags}
         date={post.data.pubDate}
